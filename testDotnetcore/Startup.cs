@@ -112,6 +112,7 @@ namespace testDotnetcore
                 looger.LogInformation("a3 end");
             });
 
+
             
 
 
