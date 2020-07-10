@@ -102,7 +102,7 @@ namespace testDotnetcore
 
             app.Run(async (context) =>
             {
-                throw new Exception("dev exception");
+                //throw new Exception("dev exception");
                 looger.LogInformation("a3 start");
                 await context.Response.WriteAsync("\nHello World");
                 await context.Response.WriteAsync("\n" + Process.GetCurrentProcess().ProcessName);
