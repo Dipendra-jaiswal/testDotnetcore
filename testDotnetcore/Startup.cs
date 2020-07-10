@@ -41,6 +41,8 @@ namespace testDotnetcore
                 app.UseDeveloperExceptionPage(objPage);
             }
 
+
+            //Binding default static pages
             //DefaultFilesOptions obj = new DefaultFilesOptions();
             //obj.DefaultFileNames.Clear();
             //obj.DefaultFileNames.Add("Test.html");
