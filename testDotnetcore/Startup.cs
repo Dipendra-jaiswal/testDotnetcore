@@ -25,10 +25,7 @@ namespace testDotnetcore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddControllersWithViews();
-            services.AddControllers();
-            services.AddRazorPages();
+            services.AddMvc(p => p.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,9 +51,10 @@ namespace testDotnetcore
 
 
             // app.UseDefaultFiles(obj);
-            // app.UseStaticFiles();
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
 
-            app.UseFileServer(objFileServer);
+            //app.UseFileServer(objFileServer);
             
 
             //app.UseRouting();
