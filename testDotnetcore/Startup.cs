@@ -104,6 +104,7 @@ namespace testDotnetcore
             {
                 //my changes
                 //throw new Exception("dev exception");
+
                 looger.LogInformation("a3 start");
                 await context.Response.WriteAsync("\nHello World");
                 await context.Response.WriteAsync("\n" + Process.GetCurrentProcess().ProcessName);
