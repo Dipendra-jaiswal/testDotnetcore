@@ -102,7 +102,7 @@ namespace testDotnetcore
 
             app.Run(async (context) =>
             {
-                //my changes
+                //my changes 
                 //throw new Exception("dev exception");
 
                 looger.LogInformation("a3 start");
