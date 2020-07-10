@@ -25,16 +25,20 @@ namespace testDotnetcore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(p => p.EnableEndpointRouting = false);
+            services.AddMvc();
+            services.AddControllersWithViews();
+            services.AddControllers();
+            services.AddRazorPages();
         }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> looger)
         {
             if (env.IsDevelopment())
             {
-               // DeveloperExceptionPageOptions objPage = new DeveloperExceptionPageOptions();
-               // objPage.SourceCodeLineCount = 10;
-                app.UseDeveloperExceptionPage();
+                DeveloperExceptionPageOptions objPage = new DeveloperExceptionPageOptions();
+                objPage.SourceCodeLineCount = 10;
+                app.UseDeveloperExceptionPage(objPage);
             }
 
 
@@ -43,25 +47,24 @@ namespace testDotnetcore
             //obj.DefaultFileNames.Clear();
             //obj.DefaultFileNames.Add("Test.html");
 
-            //FileServerOptions objFileServer = new FileServerOptions();
-            //objFileServer.DefaultFilesOptions.DefaultFileNames.Clear();
-            //objFileServer.DefaultFilesOptions.DefaultFileNames.Add("Test.html");
+            FileServerOptions objFileServer = new FileServerOptions();
+            objFileServer.DefaultFilesOptions.DefaultFileNames.Clear();
+            objFileServer.DefaultFilesOptions.DefaultFileNames.Add("Test.html");
 
 
 
             // app.UseDefaultFiles(obj);
-             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-            // app.UseFileServer(objFileServer);
+            // app.UseStaticFiles();
 
+            app.UseFileServer(objFileServer);
+            
 
-            // app.UseRouting();
-            // app.UseMvc(p => p.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));
+            //app.UseRouting();
 
-            // app.UseAuthentication();
-            // app.UseAuthorization();
+           // app.UseAuthentication();
+           // app.UseAuthorization();
 
-            // app.UseMyCustomMiddleware();
+           // app.UseMyCustomMiddleware();
 
             //app.Use(async (context, next) =>
             //{
@@ -97,17 +100,20 @@ namespace testDotnetcore
             //    });
             //});
 
-            //app.Run(async (context) =>
-            //{
-            //    //throw new Exception("dev exception");
-            //  //  looger.LogInformation("a3 start");
-            //    await context.Response.WriteAsync("\nHello World");
-            //  //  await context.Response.WriteAsync("\n" + Process.GetCurrentProcess().ProcessName);
-            //   // await context.Response.WriteAsync("\n" + _config["mykey"]);
-            //  //  looger.LogInformation("a3 end");
-            //});
+            app.Run(async (context) =>
+            {
+                //my changes 
+                //throw new Exception("dev exception");
+
+                looger.LogInformation("a3 start");
+                await context.Response.WriteAsync("\nHello World");
+                await context.Response.WriteAsync("\n" + Process.GetCurrentProcess().ProcessName);
+                await context.Response.WriteAsync("\n" + _config["mykey"]);
+                looger.LogInformation("a3 end");
+            });
 
 
+            
 
 
 
